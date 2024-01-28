@@ -1,0 +1,36 @@
+terraform
+.terraform
+#.terraform.*
+test2_git_ignore
+.ansible-retry
+aws_hosts
+
+# course .gitignore
+# .gitignore
+
+# misc
+*.pem
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+# we don't have these right now because terraform state is backed up to terraform cloud
+# as illustrated even with resources and variables flagged with senstive = true, the tfstate files will still have this sensitive data
+# It is ideal to put the state on secure cloud (like terraform cloud).  The tfstate has been excluded from the git repo as shown below:
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Ansible
+*.retry
+
+# terraform tfvars files. These have sensitive variable information.
+*.tfvars
+
+# noderedvol.  this is the bind mount for the nodered container instances. It is mounted to /data on the containers.
+noderedvol
+noderedvol/
+
