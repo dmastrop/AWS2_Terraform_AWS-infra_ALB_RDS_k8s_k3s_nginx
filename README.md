@@ -7,3 +7,7 @@ A test deployment of nginx is installed to both pods. The ALB is configured with
 and target group and target group attachments to the appropriate container exposed ports (8000 in this simple example). 
 The security groups for public and private (db) subnets are created and access is given to local PC subnet and to Cloud9 
 for extensive testing of the deployment, SSH access, and kubeconfig control access (6443)
+Terraform destroy will remove the local kubeconfig yaml files from the Cloud9 project workspace.
+As noted in the k8s counterpart project to this project, the control kubeconfig file is shared with the k8s project via the terraform
+remote datasources block in k8s project root/datasources.tf
+The nodes had to be upgraded to t3.small for stablity issues.
