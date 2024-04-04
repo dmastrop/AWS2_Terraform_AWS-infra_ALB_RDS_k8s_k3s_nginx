@@ -75,10 +75,22 @@ module "database" {
     # next define all the variables. Later migrate to terraform.tfvars
     db_storage = 10 # in Gibibytes
     #db_engine_version = "5.7.22"
-    db_engine_version = "5.7.37"
+    db_engine_version = "8.0.32"
     # this is minimum 5.7.37 now. See this link
     # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/MySQL.Concepts.VersionMgmt.html
-    db_instance_class = "db.t2.micro"
+    # 4/2024 end of standard support for 5.7 was on 2/2024
+    # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/extended-support.html
+    # use extended support version.   5.7.37 is no longer avaiable.
+    # try 5.7.44 This did not work: 
+    # RDS does not support creating a DB instance with the following combination: DBInstanceClass=db.t2.micro, Engine=mysql, EngineVersion=
+    # 5.7.44, LicenseModel=general-public-license.
+    # try 8.0.32.  Instance class db.t2.micro is not supported. Try changing that 
+    # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Db2.Concepts.General.InstanceClasses.html
+    # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
+    # https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.InstanceClasses
+    
+    #db_instance_class = "db.t2.micro"
+    db_instance_class = "db.t3.small"
     
     # MOVE dbname dbuser and dbpassword to terraform.tfvars
     # for security so that these do not get pushed to github.
